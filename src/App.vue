@@ -3,14 +3,19 @@
     <h1 class="title-text">Вcплывающая панель для переписки</h1>
     <p class="title-text title-info">(aka Скайп)</p>
     <Chat/>
+    <button @click.prevent="openModal" class="btn">открыть чат</button>
   </div>
 </template>
 
 <script>
 import Chat from '@/components/Chat'
+import { mapMutations } from 'vuex'
 export default {
   name: 'app',
-  components: { Chat }
+  components: { Chat },
+  methods: {
+    ...mapMutations(['openModal'])
+  }
 }
 </script>
 
@@ -55,4 +60,15 @@ export default {
     font-size: 18px;
     margin: 0;
   }
+
+  .btn {
+    border: 1px solid #b1b6bb;
+    font-size: 16px;
+    border-radius: 3px;
+    padding: 5px 27px;
+    background: white;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#d4d4d8));
+    background: linear-gradient(180deg, white 0%, #d4d4d8 100%);
+  }
+
 </style>

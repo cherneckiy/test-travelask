@@ -1,5 +1,6 @@
 <template>
-  <div class="chat">
+
+  <div class="chat" v-if="showModal">
     <chat-head/>
     <div class="chat__body">
       <messages/>
@@ -12,10 +13,14 @@
 import ChatHead from '@/components/ChatHead'
 import ChatFooter from '@/components/ChatFooter'
 import Messages from '@/components/Messages'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Chat',
-  components: { Messages, ChatFooter, ChatHead }
+  components: { Messages, ChatFooter, ChatHead },
+  computed: {
+    ...mapState(['showModal'])
+  }
 }
 </script>
 

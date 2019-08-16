@@ -47,7 +47,8 @@ export default new Vuex.Store({
     ],
     formTextarea: {
       value: ''
-    }
+    },
+    showModal: false
   },
   mutations: {
     messageAdd (state, message) {
@@ -56,7 +57,6 @@ export default new Vuex.Store({
     clearForm (state) {
       state.formTextarea.value = ''
     },
-
     readMessage (state) {
       state.messages = state.messages.map(msg => {
         if (msg.read === false) {
@@ -64,6 +64,12 @@ export default new Vuex.Store({
         }
         return msg
       })
+    },
+    openModal (state) {
+      state.showModal = true
+    },
+    closeModal (state) {
+      state.showModal = false
     }
   },
   actions: {

@@ -5,12 +5,16 @@
             <div class="chat-head__name title-text">Токсикова Ольга</div>
             <div class="chat-head__city">Днепропетровск</div>
         </div>
-        <a href="#" @click.prevent class="chat-head__close">+</a>
+        <a href="#" @click.prevent="closeModal" class="chat-head__close">+</a>
     </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 export default {
-  name: 'chat-head'
+  name: 'chat-head',
+  methods: {
+    ...mapMutations(['closeModal'])
+  }
 }
 </script>
 <style scoped lang="scss">
