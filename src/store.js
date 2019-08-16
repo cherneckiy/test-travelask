@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import randomId from './helpers/randome-id'
 
 Vue.use(Vuex)
 
@@ -7,44 +8,81 @@ export default new Vuex.Store({
   state: {
     messages: [
       {
-        id: 1,
+        id: randomId(),
         outgoing: false,
         imageUrl: require('../src/assets/user-1.png'),
         message: `Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
             Предстоит участие в <a href="#" >мероприятии</a>, где все гости будут наверняка одеты
             в наряды "от кутюр", а у меня со средствами туговато,
             да и жалко на один раз такие деньжищи отваливать. Мне`,
-        time: `вчера в 17.45`
+        date: new Date('2019, 8, 13, 15:30:30'),
+        read: true
       },
       {
-        id: 2,
+        id: randomId(),
         outgoing: true,
         imageUrl: require('../src/assets/user-2.png'),
         message: `Поисковик вам в помощь! Но цена примерно в половину стоимости платья.`,
-        time: `вчера в 18.45`
+        date: new Date('2019, 8, 15, 21:15:30'),
+        read: true
       },
       {
-        id: 3,
+        id: randomId(),
         outgoing: false,
         imageUrl: require('../src/assets/user-1.png'),
         message: `Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
                 Предстоит участие в мероприятии, где все гости будут наверняка одеты в
                 наряды "от кутюр", а у меня со средствами туговато`,
-        time: `сегодня в 17.45`
+        date: new Date('2019, 8, 15, 22:15:30'),
+        read: true
       },
       {
-        id: 4,
+        id: randomId(),
         outgoing: true,
         imageUrl: require('../src/assets/user-2.png'),
         message: `Поисковик вам в помощь! Но цена примерно в половину стоимости платья.`,
-        time: `18.45`
+        date: new Date('2019, 8, 15, 23:15:30'),
+        read: true
       }
-    ]
+    ],
+    formTextarea: {
+      value: ''
+    }
   },
   mutations: {
+    messageAdd (state, message) {
+      state.messages.push(message)
+    },
+    clearForm (state) {
+      state.formTextarea.value = ''
+    },
 
+    readMessage (state) {
+      state.messages = state.messages.map(msg => {
+        if (msg.read === false) {
+          msg.read = true
+        }
+        return msg
+      })
+    }
   },
   actions: {
+    addMessage ({ state, commit }) {
+      if (state.formTextarea.value === '') {
+        return
+      }
 
+      const message = {
+        id: randomId(),
+        message: state.formTextarea.value,
+        imageUrl: require('../src/assets/user-2.png'),
+        date: new Date(),
+        outgoing: true,
+        read: false
+      }
+      commit('messageAdd', message)
+      commit('clearForm')
+      setTimeout(() => commit('readMessage'), 2000)
+    }
   }
 })

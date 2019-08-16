@@ -1,15 +1,23 @@
 <template>
     <div class="chat-footer">
         <img src="../assets/user-2.png" alt="name-user" class="chat-footer__image">
-        <form class="chat-form chat-footer__chat-form">
-            <textarea rows="4" class="chat-form__textarea"></textarea>
+        <form class="chat-form chat-footer__chat-form" @submit.prevent="addMessage">
+            <textarea rows="4" class="chat-form__textarea" v-model="formTextarea.value"></textarea>
             <button class="chat-form__btn">Отправить</button>
         </form>
     </div>
 </template>
 <script>
+
+import { mapState, mapActions } from 'vuex'
 export default {
-  name: 'chat-footer'
+  name: 'chat-footer',
+  computed: {
+    ...mapState(['formTextarea'])
+  },
+  methods: {
+    ...mapActions(['addMessage'])
+  }
 }
 </script>
 <style scoped lang="scss">

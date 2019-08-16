@@ -1,8 +1,12 @@
 <template>
-    <div class="messages__item message message_incoming">
+    <div class="messages__item message" :class="[isOutgoingClass, isReadMessage]">
         <img :src="item.imageUrl" alt="name-user" class="message__image">
         <div class="message__text" v-html="item.message"></div>
-        <div class="message__time" v-html="item.time"></div>
+        <div class="message__time">
+          {{ isToDay ? 'сегодня в' : '' }}
+          {{ isToMorrow ? 'вчера в' : '' }}
+          {{ time }}
+        </div>
     </div>
 </template>
 <script>
@@ -10,6 +14,23 @@ export default {
   name: 'messages-item',
   props: {
     item: Object
+  },
+  computed: {
+    isToDay () {
+      return new Date(this.item.date).getDay() === new Date().getDay()
+    },
+    isToMorrow () {
+      return new Date(this.item.date).getDay() === new Date().getDay() - 1
+    },
+    time () {
+      return `${this.item.date.getHours()}:${this.item.date.getMinutes()}`
+    },
+    isOutgoingClass () {
+      return this.item.outgoing ? 'message_outgoing' : 'message_incoming'
+    },
+    isReadMessage () {
+      return !this.item.read ? 'message_read' : ''
+    }
   }
 }
 </script>
@@ -19,6 +40,7 @@ export default {
         display: flex;
         padding: 7px 5px 7px 15px;
         border-radius: 3px;
+        transition: background-color 0.3s;
 
         &__image {
             width: 30px;
@@ -44,6 +66,10 @@ export default {
 
         &_incoming {
 
+        }
+
+        &_read {
+          background-color: #e9f2fa!important;
         }
     }
 
