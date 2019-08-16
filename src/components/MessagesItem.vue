@@ -3,8 +3,8 @@
         <img :src="item.imageUrl" alt="name-user" class="message__image">
         <div class="message__text" v-html="item.message"></div>
         <div class="message__time">
-          {{ isToDay ? 'сегодня в' : '' }}
-          {{ isToMorrow ? 'вчера в' : '' }}
+          {{ isToDay }}
+          {{ isToMorrow }}
           {{ time }}
         </div>
     </div>
@@ -17,10 +17,10 @@ export default {
   },
   computed: {
     isToDay () {
-      return new Date(this.item.date).getDay() === new Date().getDay()
+      return new Date(this.item.date).getDay() === new Date().getDay() ? 'сегодня в' : ''
     },
     isToMorrow () {
-      return new Date(this.item.date).getDay() === new Date().getDay() - 1
+      return new Date(this.item.date).getDay() === new Date().getDay() - 1 ? 'вчера в' : ''
     },
     time () {
       return `${this.item.date.getHours()}:${this.item.date.getMinutes()}`
