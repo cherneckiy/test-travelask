@@ -1,6 +1,6 @@
 <template>
   <div class="chat">
-    <div class="chat__head chat-head">
+    <div class="chat-head">
       <img src="../assets/user-1.png" alt="name-user" class="chat-head__image">
       <div class="chat-head__info">
         <div class="chat-head__name title-text">Токсикова Ольга</div>
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="chat__footer chat-footer">
+    <div class="chat-footer">
       <img src="../assets/user-2.png" alt="name-user" class="chat-footer__image">
       <form class="chat-form chat-footer__chat-form">
         <textarea rows="4" class="chat-form__textarea"></textarea>
@@ -63,6 +63,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .chat {
   width: 600px;
   min-height: 250px;
@@ -78,35 +79,47 @@ export default {
   flex-flow: column wrap;
   box-shadow:  0 0 11px 0 rgba(52, 56, 63, 0.5);
 
-  &__head {
-    border: 1px solid #ebebeb;
-  }
-
   &__body {
-    padding: 7px 30px 7px 35px;
+    padding: 7px 15px 7px 30px;
+    margin-right: 7px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
     flex: 1;
-  }
 
-  &__footer {
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: none;
+      background-color: transparent;
+    }
 
+    &::-webkit-scrollbar {
+      width: 8px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #c2c2c2;
+    }
   }
 }
 
 .chat-head {
   display: flex;
   background: url('../assets/chat-head-line.png') 0 0 repeat-x;
-  padding: 28px 30px 15px;
+  padding: 28px 6px 15px 30px;
+  border-bottom: 1px solid #ebebeb;
 
   &__image {
-
+    width: 45px;
+    height: 45px;
   }
 
   &__name {
     font-weight: bold;
     font-size: 24px;
+    padding-bottom: 5px;
   }
 
   &__city {
@@ -132,19 +145,25 @@ export default {
     text-align: center;
     font-size: 22px;
     transform: rotate(45deg);
+    position: relative;
+    top: -5px;
+    transition: opacity .3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 
 .messages {
-
   &__item {
-
+    margin: 14px 0;
   }
 }
 
 .message {
   display: flex;
-  padding: 7px 7px 7px 15px;
+  padding: 7px 5px 7px 15px;
   border-radius: 3px;
 
   &__image {
@@ -154,7 +173,7 @@ export default {
 
   &__text {
     padding: 0 15px;
-    max-width: 370px;
+    max-width: 400px;
   }
 
   &__time {
@@ -162,6 +181,7 @@ export default {
     text-align: right;
     font-size: 12px;
     color: #7f7f7f;
+    padding-top: 3px;
   }
 
   &_outgoing {
@@ -190,7 +210,6 @@ export default {
 }
 
 .chat-form {
-
   &__textarea {
     display: block;
     width: 100%;
