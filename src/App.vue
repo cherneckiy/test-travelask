@@ -2,19 +2,32 @@
   <div id="app">
     <h1 class="title-text">Вcплывающая панель для переписки</h1>
     <p class="title-text title-info">(aka Скайп)</p>
+    <Chat/>
   </div>
 </template>
 
 <script>
+import Chat from '@/components/Chat'
 export default {
-  name: 'app'
+  name: 'app',
+  components: { Chat }
 }
 </script>
 
 <style lang="scss">
+  @import '~normalize.css/normalize';
   @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap&subset=cyrillic');
   $font-PTSans: 'PT Sans', Arial, Helvetica sans-serif;
   $font-Arial: Arial, Helvetica, sans-serif;
+
+  * {
+    box-sizing: border-box;
+
+    &:after,
+    &:before {
+      box-sizing: inherit;
+    }
+  }
 
   body {
     font-family: $font-Arial;
@@ -40,5 +53,6 @@ export default {
 
   .title-info {
     font-size: 18px;
+    margin: 0;
   }
 </style>
