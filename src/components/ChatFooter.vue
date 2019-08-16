@@ -2,7 +2,7 @@
     <div class="chat-footer">
         <img src="../assets/user-2.png" alt="name-user" class="chat-footer__image">
         <form class="chat-form chat-footer__chat-form" @submit.prevent="addMessage">
-            <textarea rows="4" class="chat-form__textarea" v-model="formTextarea.value"></textarea>
+            <textarea :rows="isBigRow" ref="textarea" class="chat-form__textarea" v-model="formTextarea.value"></textarea>
             <button class="chat-form__btn btn">Отправить</button>
         </form>
     </div>
@@ -13,7 +13,10 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'chat-footer',
   computed: {
-    ...mapState(['formTextarea'])
+    ...mapState(['formTextarea']),
+    isBigRow () {
+      return this.formTextarea.value.length > 250 ? 7 : 4
+    }
   },
   methods: {
     ...mapActions(['addMessage'])
