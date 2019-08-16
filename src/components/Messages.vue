@@ -1,39 +1,18 @@
 <template>
     <div class="messages">
-        <messages-item/>
-
-        <div class="messages__item message message_outgoing">
-            <img src="../assets/user-2.png" alt="name-user" class="message__image">
-            <div class="message__text">
-                Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
-            </div>
-            <div class="message__time">вчера в 18.45</div>
-        </div>
-
-        <div class="messages__item message message_incoming">
-            <img src="../assets/user-1.png" alt="name-user" class="message__image">
-            <div class="message__text">
-                Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
-                Предстоит участие в мероприятии, где все гости будут наверняка одеты в
-                наряды "от кутюр", а у меня со средствами туговато
-            </div>
-            <div class="message__time">сегодня в 17.45</div>
-        </div>
-        <div class="messages__item message message_outgoing">
-            <img src="../assets/user-2.png" alt="name-user" class="message__image">
-            <div class="message__text">
-                Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
-            </div>
-            <div class="message__time">18.45</div>
-        </div>
+        <messages-item v-for="item of messages" :key="item.id" :item="item"/>
     </div>
 </template>
 <script>
 import MessagesItem from '@/components/MessagesItem'
+import { mapState } from 'vuex'
 
 export default {
   name: 'messages',
-  components: { MessagesItem }
+  components: { MessagesItem },
+  computed: {
+    ...mapState(['messages'])
+  }
 }
 </script>
 <style scoped lang="scss">

@@ -1,18 +1,16 @@
 <template>
     <div class="messages__item message message_incoming">
-        <img src="../assets/user-1.png" alt="name-user" class="message__image">
-        <div class="message__text">
-            Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
-            Предстоит участие в <a href="#" @click.prevent>мероприятии</a>, где все гости будут наверняка одеты
-            в наряды "от кутюр", а у меня со средствами туговато,
-            да и жалко на один раз такие деньжищи отваливать. Мне
-        </div>
-        <div class="message__time">вчера в 17.45</div>
+        <img :src="item.imageUrl" alt="name-user" class="message__image">
+        <div class="message__text" v-html="item.message"></div>
+        <div class="message__time" v-html="item.time"></div>
     </div>
 </template>
 <script>
 export default {
-  name: 'messages-item'
+  name: 'messages-item',
+  props: {
+    item: Object
+  }
 }
 </script>
 <style scoped lang="scss">
