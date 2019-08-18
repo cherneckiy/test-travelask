@@ -4,7 +4,7 @@
         <div class="message__text" v-html="item.message"></div>
         <div class="message__time">
           {{ isToDay }}
-          {{ isToMorrow }}
+          {{ isYesterDay }}
           {{ time }}
         </div>
     </div>
@@ -17,10 +17,10 @@ export default {
   },
   computed: {
     isToDay () {
-      return new Date(this.item.date).getDay() === new Date().getDay() ? 'сегодня в' : ''
+      return new Date(this.item.date).getUTCDate() === new Date().getUTCDate() ? 'сегодня в' : ''
     },
-    isToMorrow () {
-      return new Date(this.item.date).getDay() === new Date().getDay() - 1 ? 'вчера в' : ''
+    isYesterDay () {
+      return new Date(this.item.date).getUTCDate() === new Date().getUTCDate() - 1 ? 'вчера в' : ''
     },
     time () {
       return `${this.item.date.getHours()}:${this.item.date.getMinutes()}`

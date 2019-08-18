@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import randomId from './helpers/randome-id'
+import newId from './helpers/new-id'
 
 Vue.use(Vuex)
 
@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     messages: [
       {
-        id: randomId(),
+        id: newId(),
         outgoing: false,
         imageUrl: require('../src/assets/user-1.png'),
         message: `Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
@@ -19,29 +19,29 @@ export default new Vuex.Store({
         read: true
       },
       {
-        id: randomId(),
+        id: newId(),
         outgoing: true,
         imageUrl: require('../src/assets/user-2.png'),
         message: `Поисковик вам в помощь! Но цена примерно в половину стоимости платья.`,
-        date: new Date('2019, 8, 15, 21:15:30'),
+        date: new Date('2019, 8, 17, 21:15:30'),
         read: true
       },
       {
-        id: randomId(),
+        id: newId(),
         outgoing: false,
         imageUrl: require('../src/assets/user-1.png'),
         message: `Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
                 Предстоит участие в мероприятии, где все гости будут наверняка одеты в
                 наряды "от кутюр", а у меня со средствами туговато`,
-        date: new Date('2019, 8, 15, 22:15:30'),
+        date: new Date('2019, 8, 18, 22:15:30'),
         read: true
       },
       {
-        id: randomId(),
+        id: newId(),
         outgoing: true,
         imageUrl: require('../src/assets/user-2.png'),
         message: `Поисковик вам в помощь! Но цена примерно в половину стоимости платья.`,
-        date: new Date('2019, 8, 15, 23:15:30'),
+        date: new Date('2019, 8, 18, 23:15:30'),
         read: true
       }
     ],
@@ -79,7 +79,7 @@ export default new Vuex.Store({
       }
 
       const message = {
-        id: randomId(),
+        id: newId(),
         message: state.formTextarea.value,
         imageUrl: require('../src/assets/user-2.png'),
         date: new Date(),
@@ -88,7 +88,7 @@ export default new Vuex.Store({
       }
       commit('messageAdd', message)
       commit('clearForm')
-      setTimeout(() => commit('readMessage'), 2000)
+      setTimeout(() => commit('readMessage'), 2 * 1000)
     }
   }
 })
